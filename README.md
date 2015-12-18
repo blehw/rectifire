@@ -12,7 +12,6 @@ Project requirments:
   3. A web interface to upload essays
   4. A web interface to edit essays.
   4. An interface to review edits and comments.
-  5. 
   
 Roles:
   Database: Winton
