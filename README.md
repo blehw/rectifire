@@ -3,7 +3,7 @@ A collaborative, crowd sourcing website to facilitate peer editing of essays, th
 
 
 
-Users light fires using their kindling to attract other user in from the cold dark night. By throwing more wood on their fire, they can attract more scholars to edit their work. Warmed by their fire, their collegues can edit and comment on their work. In exchange the user pays his comrades in kindling so they may light their own fires. The better a job they do, the more wood they earn. HOWEVER, a user's supply of firewood is not infinite and he must venture out into the wilds to help other users on their projects in order to acquire more firewood. 
+Users light fires using their kindling to attract other users in from the cold dark night. By throwing more wood on their fire, they can attract more scholars to edit their work. Warmed by their fire, their collegues can edit and comment on their work. In exchange the user pays his comrades in kindling so they may light their own fires. The better a job they do, the more wood they earn. HOWEVER, a user's supply of firewood is not infinite and he must venture out into the wilds to help other users on their projects in order to acquire more firewood. 
 
 
 Project requirments:
@@ -17,3 +17,13 @@ Roles:
   Database: Winton
   Middleware: Henry
   Web Design: Jacob
+
+Essay Database: Title,author,length(how many characters long is the content),essay_description,essay_content,date_uploaded,Idnum(maybe)
+
+Deadlines:
+  User Database: 
+    add_account(user,passwd)
+    set_firewood(int)
+    essays_edited(int)
+  Essay Database: 
+    add_essay(title,author,length,essay_description,essay_content),get_essay(title,author)
