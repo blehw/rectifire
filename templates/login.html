@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+
+<head>
+  <title>Login</title>
+</head>
+
+<body>
+  <p> {% if s.logged %} You are logged in already!  </p>
+  <form action="/logout">
+    <input type="submit" value="Logout">
+  </form>
+ {% else %}<p>You are not logged in! :( </p> 
+  {{error}}
+  <form action="/login" method="POST" >
+    Username: <input type="text" name="username">
+    Password: <input type="text" name="password">
+    <input type="submit" name="button" value="login">
+  </form>
+  {% endif %}
+</body>
