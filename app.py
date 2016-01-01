@@ -11,17 +11,16 @@ def home():
 
     else:
 
-@app.route('/login')
+@app.route('/login',methods=['GET','POST'])
 def login():
     if request.method=="GET":
         return render_template('login.html',s=session)
     if request.method=="POST":
-        #We need to add a verification system
-        if request.form['username']=="henry" and request.form['password']=='12345':
+        if (authenticate(request.form['username'],request.form['password']):
             session['logged']=True
             return redirect('/')
         else:
-            return render_template('login.html',s=session,error='incorrect username or password")
+            return render_template('login.html',s=session,error='incorrect username or passwor')
 
 #When a user clicks a button to logout, direct them here, log them out and redirect them
 @app.route('/logout')
