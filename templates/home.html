@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<head>
+  <link type="text/css" rel="stylesheet" href="static/template00.css" }}>
+  <title>Bloginator</title>
+</head>
+<div id="layout" class="pure-g">
+  <div class="sidebar pure-u-1 pure-u-md-1-4">
+    <div class="header">
+      <h1>Bloginator</h1>
+      <h2>Made by A+<br>quality students</h2>
+      <nav class="nav">
+        <ul class="nav-list">
+	  {% if s.logged %}
+          <h2>Welcome back, {{s.username}}!</h2>
+          <li class="nav-item">
+            <a class="pure-button" href="/logout">De-Login</a>
+
+          </li>
+	  {% else %}
+          <li class="nav-item">
+            <a class="pure-button" href="/login">Login</a>
+          </li>
+        </ul>
+	{% endif %}
+      </nav>
+      </div>
+  </div>
+
+<div class="content pure-u-1 pure-u-md-3-4">
+
+            <div class="posts">
+	      {% if s.in_comments %}
+	      <h1 class="content-subhead" style="color:white;">Thread</h1>
+	      <h2 class="post-title" style="text-align:left; font-style: italic; background:rgb(21, 69, 93); color:white;">{{s.comment_name}}</h2>
+	      <div class="post-description">
+                  <p>
+                    {{s.comment_text}}
+		    </p>
+	      </div>
+              <form action="/make_comment" method="POST">
+                <textarea rows="3" cols="100" name="thecomment">Your Comment</textarea><br>
+                <input type="submit" name="button" value="Post Comment">
+              </form><br><li class="nav-item">
+	      <a class="pure-button" href="/set_comment_off">Back to home</a>
+              </li>
+	      {% for item in s.comments %}
+
+		<p style="text-style:bold;">{{item}}</p><br>
+
+	      
+
+	      {% endfor %}
+	      {% else %}
+	      {% if s.logged %}
+	      <form action="/home" method="POST">
+		<h1 style="text-align:left; font-style: italic; background:rgb(21, 69, 93);">New Post</h1>
+		<textarea rows="1" cols="40" name="title">Title</textarea><br>
+		<textarea rows="5" cols="100" name="story">Blog Text</textarea><br>
+		<input type="submit" name="button" value="Post">
+	      </form>
+	      {% endif %}
+              <h1 class="content-subhead" style="color:white;">Recent Threads</h1>
+	      
+	      {% for item in posts %}
+	      {% if loop.index<s.post_til %}
+		{% if loop.index>(s.post_til-10) %}
+		
+		<section class="post">
+                  <header class="post-header">
+		    
+                    <h2 class="post-title" style="text-align:left; font-style: italic; background:rgb(21, 69, 93); color:white;">{{item[2]}}</h2>
+
+                    <p class="post-meta">
+                    By <a class="post-author" href="#">{{item[0]}}</a>
+                </header>
+
+                <div class="post-description">
+                  <p>
+                    {{item[1]}}
+		    <br>
+		    <form action="/comments" method="POST">
+		    <input type="hidden" name="post_id" value="{{item[4]}}">
+		    <input type="hidden" name="comment_name" value="{{item[2]}}">
+		    <input type="hidden" name="comment_text" value="{{item[1]}}">
+		    <input type="submit" name="button" value="comment">
+		    </form>
+                    {% if s.logged %}
+                    {% if (item[0] == s.username): %}
+                    <br>
+		    <form action="/rm_post" method="POST">
+		    <input type="hidden" name="post_id" value={{item[4]}}>
+		    <input type="hidden" name="comment_name" value={{item[2]}}>
+		    <input type="hidden" name="comment_text" value={{item[1]}}>
+		    <input type="submit" name="button" value="Remove Post">
+		    </form>
+                    {% endif %}
+                    {% endif %}
+                  </p>
+                </div>
+              </section>
+	      {% endif %}
+	      {% endif %}
+	      {% endfor %}
+		
+		{% if s.post_til>10 %}
+		<a href="/remove_more_posts">Last 10 Posts</a>
+		{% endif %}
+	      <a href="/add_more_posts">Next 10 Posts</a>
+	      {% endif %}
+	      <div class="footer">
+		<div class="pure-menu pure-menu-horizontal">
+		  <ul>
+		    <li class="pure-menu-item"><a style="text-align:center;color:white;"  href="#">About</a></li>
+		    <li><a style="text-align:center;color:white;" href="https://github.com/hfilosa/Bloginator" class="pure-menu-link">GitHub</a></li>
+		  </ul>
+		</div>
+	    </div>
+</div>
+</div>
+</div>
