@@ -18,18 +18,15 @@ def login():
     if request.method=="GET":
         return render_template('login.html',s=session)
     if request.method=="POST":
-<<<<<<< HEAD
         if (request.form['button']=="login"):
             if (authenticate(request.form['username'],request.form['password'])):
                 session['logged']=True
                 return redirect('/')
             else:
-                return render_template('login.html',s=session,error='incorrect username or passwor')
-=======
+                return render_template('login.html',s=session,error='incorrect username or password')
         if (authenticate(request.form['username'],request.form['password'])):
             session['logged']=True
             return redirect('/')
->>>>>>> 181e5fe4388600fdfd3195586860c87545c8c4df
         else:
             if (newUser(request.form['username'],request.form['password'])):
                 session['logged']=True
