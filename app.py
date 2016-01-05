@@ -16,11 +16,19 @@ def login():
     if request.method=="GET":
         return render_template('login.html',s=session)
     if request.method=="POST":
-        if (authenticate(request.form['username'],request.form['password']):
-            session['logged']=True
-            return redirect('/')
+        if (request.form['button']=="login"):
+            if (authenticate(request.form['username'],request.form['password'])):
+                session['logged']=True
+                return redirect('/')
+            else:
+                return render_template('login.html',s=session,error='incorrect username or passwor')
         else:
-            return render_template('login.html',s=session,error='incorrect username or passwor')
+            if (newUser(request.form['username'],request.form['password'])):
+                session['logged']=True
+                return redirect('/')
+            else:
+                 return render_template('login.html',s=session,error='Invalid username or passwor')
+            
 
 #When a user clicks a button to logout, direct them here, log them out and redirect them
 @app.route('/logout')
