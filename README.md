@@ -28,4 +28,6 @@ Deadlines:
   Essay Database: 
     add_essay(title,author,length,essay_description,essay_content),get_essay(title,author)
     
-Database completion: 12/23
+Goals Tonight:
+  1. Add templating for Navbar
+  2. Finish login
