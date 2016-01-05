@@ -16,15 +16,15 @@ def authenticate(username, password):
         return True
     return "noUser"
 
-def set_firewood(username,num_fire):
-    db.users.update(
-        {'username':username},
-        { $set:
-          { 'fire': num_fire}
-      }
-    )
+#def set_firewood(username,num_fire):
+#    db.users.update(
+#        {'username':username},
+#        { $set:
+#          { 'fire': num_fire}
+#      }
+#    )
 
-def essays_edited(num_essays):
+#def essays_edited(num_essays):
  
 def add_essay(title,author,length,essay_description,essay_content):
     if (database.essays.find({'title':title,'author':author}).count()>0):
@@ -35,6 +35,7 @@ def add_essay(title,author,length,essay_description,essay_content):
 
 def get_essay(title,author):
     if (database.users.find({'title':title,'author':author}).count()==1):
-        return database.users.find({'title':title,'author':author}
-    return False
+        return database.users.find({'title':title,'author':author})
+    else:
+        return False
     
