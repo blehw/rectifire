@@ -8,31 +8,20 @@ def home():
     if 'logged' not in session:
         session['logged']=False
     if request.method=="GET":
-        return render_template("home.html")
-    else:
-        if button == "Signup":
-            button = request.form['button']
-
-@app.route('/login',methods=['GET','POST'])
-def login():
-    if 'logged' not in session:
-        session['logged']=False
-    if request.method=="GET":
-        return render_template('login.html',s=session)
+        return render_template("home.html",s=session)
     if request.method=="POST":
-        username = request.form['username']
-        password = request.form['password']
         if (request.form['button']=="login"):
             if (module.authenticate(username,password)):
                 session['logged']=username
-                return "You have logged in!"
+                session['name'] = request.form['username']
+                return render_template("home.html",s=session)
             else:
-                return render_template('login.html',s=session,error='incorrect username or password')
+                return render_template('home.html',s=session,error='incorrect username or password')
         if (request.form['button']=="signup"):
             if module.newUser(username,password):
                 return "You have signed up!"
             else:
-                return render_template('login.html',s=session,error='Invalid username or password')
+                return render_template('home.html',s=session,error='Invalid username or password')
             
 
 #When a user clicks a button to logout, direct them here, log them out and redirect them
