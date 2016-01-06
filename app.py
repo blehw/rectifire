@@ -5,8 +5,8 @@ app = Flask(__name__)
 
 @app.route("/",methods=['GET','POST'])
 def home():
-    #if 'logged' not in session:
-    #    session['logged']=False
+    if 'logged' not in session:
+        session['logged']=False
     if request.method=="GET":
         return render_template("home.html")
     else:
@@ -15,20 +15,19 @@ def home():
 
 @app.route('/login',methods=['GET','POST'])
 def login():
+    if 'logged' not in session:
+        session['logged']=False
     if request.method=="GET":
         return render_template('login.html',s=session)
     if request.method=="POST":
         if (request.form['button']=="login"):
-            if (authenticate(request.form['username'],request.form['password'])):
+            if (module.authenticate(request.form['username'],request.form['password'])):
                 session['logged']=True
                 return redirect('/')
             else:
                 return render_template('login.html',s=session,error='incorrect username or password')
-        if (authenticate(request.form['username'],request.form['password'])):
-            session['logged']=True
-            return redirect('/')
         else:
-            if (newUser(request.form['username'],request.form['password'])):
+            if (module.newUser(request.form['username'],request.form['password'])):
                 session['logged']=True
                 return redirect('/')
             else:
