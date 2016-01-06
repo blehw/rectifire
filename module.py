@@ -3,23 +3,25 @@ from pymongo import MongoClient
 connection = MongoClient()
 database = connection['database']
 
+def getAllUsers():
+    ans = database.logins.find()
+    return ans
+
 def newUser(username,password):
-    ans = database.logins.find({username:True})
-    for r in ans:
-        return False
     d = {'username': username, 'password': password}
-    database.logins.insert(d)
-    connection = MongoClient()
-    db = connection['logins']
-    check = db.logins.find({'username': username}).count()
+    check = database.logins.find({'username': username}).count()
     if check != 0:
         return False
-    return True
+    else:        
+        database.logins.insert(d)
+        return True
 
 def authenticate(username, password):
-    if (database.users.find({'uname':name,'password':password}).count()==1):
+    check = database.logins.find({'username':username,'password':password}).count()
+    if check != 0:
         return True
-    return "noUser"
+    else:
+        return False
 
 #def set_firewood(username,num_fire):
 #    db.users.update(
