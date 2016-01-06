@@ -4,11 +4,16 @@ connection = MongoClient()
 database = connection['database']
 
 def newUser(username,password):
-    ans = database.users.find({username:True})
+    ans = database.logins.find({username:True})
     for r in ans:
         return False
-    newEntry = {'username': username, 'password': password, 'fire':10}
-    database.users.insert(newEntry)
+    d = {'username': username, 'password': password}
+    database.logins.insert(d)
+    connection = MongoClient()
+    db = connection['logins']
+    check = db.logins.find({'username': username}).count()
+    if check != 0:
+        return False
     return True
 
 def authenticate(username, password):
