@@ -21,7 +21,7 @@ def home():
                 return render_template('home.html',s=session,error='incorrect username or password')
         if (request.form['button']=="signup"):
             if module.newUser(username,password):
-                return "You have signed up!"
+                return render_template('signup')
             else:
                 return render_template('home.html',s=session,error='Invalid username or password')
 
