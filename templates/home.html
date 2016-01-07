@@ -62,15 +62,15 @@
 			<div id="home-row-1" class="row clearfix">
 				<div>
 					<form>
-					Username: <input type="text" name="name">
-  					Password: <input type="text" name="pass">
-  					<input type="submit" value="Login">
-					<input type="submit" value="Register">
+					Username: <input type="text" name="username">
+  					Password: <input type="text" name="password">
+  					<input type="submit" value="login">
+					<input type="submit" value="signup">
 					</form>
 				</div>
 				<div class="col-12">
 					<h1 class="font-semibold">ERECTI <span class="font-thin">FIRE</span></h1>
-					<h4 class="font-thin"> Logged in as Jacoby149<span class="font-semibold"></span></h4>
+					<h4 class="font-thin">{% if s.logged %} Logged in as {{s.username}}{% else %}Please Log In{% endif %}<span class="font-semibold"></span></h4>
 					<br>
 				</div><!-- /col-12 -->
 			</div><!-- /row -->
