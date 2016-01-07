@@ -8,7 +8,7 @@ def getAllUsers():
     return ans
 
 def newUser(username,password):
-    d = {'username': username, 'password': password}
+    d = {'username': username, 'password': password, 'firewood': 0, 'essaysEdited': 0}
     check = database.logins.find({'username': username}).count()
     if check != 0:
         return False
@@ -37,16 +37,20 @@ def authenticate(username, password):
 
 #def essays_edited(num_essays):
  
-def add_essay(title,author,length,essay_description,essay_content):
+def addEssay(title,author,length,essay_description,essay_content):
     if (database.essays.find({'title':title,'author':author}).count()>0):
         return False
     new_essay = {'title':title,'author':author,'length':length,'essay_description':essay_description,'essay_content':essay_content}
     database.essays.insert(newEntry)
     return True
 
-def get_essay(title,author):
+def getEssay(title,author):
     if (database.users.find({'title':title,'author':author}).count()==1):
         return database.users.find({'title':title,'author':author})
     else:
-        return False
+        return "No essay found"
+
+def addFirewood(user,num):
+    
+    
     
