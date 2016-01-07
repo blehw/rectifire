@@ -16,6 +16,10 @@ def newUser(username,password):
         database.logins.insert(d)
         return True
 
+def getAllUsers():
+    ans = database.logins.find()
+    return ans
+
 def authenticate(username, password):
     check = database.logins.find({'username':username,'password':password}).count()
     if check != 0:

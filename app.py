@@ -10,10 +10,12 @@ def home():
     if request.method=="GET":
         return render_template("home.html",s=session)
     if request.method=="POST":
+        username = request.form['username']
+        password = request.form['password']
         if (request.form['button']=="login"):
             if (module.authenticate(username,password)):
                 session['logged']=username
-                session['name'] = request.form['username']
+                session['username'] = request.form['username']
                 return render_template("home.html",s=session)
             else:
                 return render_template('home.html',s=session,error='incorrect username or password')
@@ -22,13 +24,18 @@ def home():
                 return "You have signed up!"
             else:
                 return render_template('home.html',s=session,error='Invalid username or password')
-            
 
 #When a user clicks a button to logout, direct them here, log them out and redirect them
 @app.route('/logout')
 def logout():
     session['logged'] = False
     return redirect('/')
+
+#Testing page to see all user accounts
+@app.route('/allusers')
+def allusers():
+    users = module.getAllUsers()
+    return users
 
 if __name__=="__main__":
     app.debug = True
