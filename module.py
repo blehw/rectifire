@@ -55,4 +55,13 @@ def addFirewood(username,num):
     newFirewood = prevFirewood + num
     database.logins.update({'username':username}, {'firewood':newFirewood})
     return True
-    
+
+def getEssaysEdited(username):
+    user = database.logins.find({'username':username})
+    return user.get('essaysEdited')
+
+def addEssaysEdited(username,num):
+    prevEssaysEdited = getEssaysEdited(username)
+    newEssaysEdited = prevEssaysEdited + num
+    database.logins.update({'username':username}, {'essaysEdited':newEssaysEdited})
+    return True
