@@ -3,10 +3,6 @@ from pymongo import MongoClient
 connection = MongoClient()
 database = connection['database']
 
-def getAllUsers():
-    ans = database.logins.find()
-    return ans
-
 def newUser(username,password):
     d = {'username': username, 'password': password, 'firewood': 0, 'essaysEdited': 0}
     check = database.logins.find({'username': username}).count()
@@ -45,12 +41,18 @@ def addEssay(title,author,length,essay_description,essay_content):
     return True
 
 def getEssay(title,author):
-    if (database.users.find({'title':title,'author':author}).count()==1):
+    if (database.essays.find({'title':title,'author':author}).count()==1):
         return database.users.find({'title':title,'author':author})
     else:
         return "No essay found"
 
-def addFirewood(user,num):
-    
-    
+def getFirewood(username):
+    user = database.logins.find({'username':username})
+    return user.get('firewood')
+
+def addFirewood(username,num):
+    prevFirewood = getFirewood(username)
+    newFirewood = prevFirewood + num
+    database.logins.update({'username':username}, {'firewood':newFirewood})
+    return True
     
