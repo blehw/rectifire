@@ -48,6 +48,15 @@
 	<h4 class="font-thin">{{error}}<span class="font-semibold"></span></h4>
       </div>
       {% endif %}
+      {% if s.logged %}
+      <div>
+	<form action="/" method ="POST">
+	  Submit your essay:: <input type="text" name="essay">
+  	  <input type="submit" name="button" value="submitEssay">
+	</form>
+	<h4 class="font-thin">{{error}}<span class="font-semibold"></span></h4>
+      </div>
+      {% endif %}
       <div class="col-12">
 	<h1 class="font-semibold">ERECTI <span class="font-thin">FIRE</span></h1>
 	<h4 class="font-thin">{% if s.logged %} Logged in as {{s.username}}{% else %}Please Log In{% endif %}<span class="font-semibold"></span></h4>

@@ -12,18 +12,25 @@ def home():
     if request.method=="POST":
         username = request.form['username']
         password = request.form['password']
-        if (request.form['button']=="login"):
+        button = request.form['button']
+        if (button=="login"):
             if (module.authenticate(username,password)):
                 session['logged']=username
                 session['username'] = request.form['username']
                 return render_template("home.html",s=session)
             else:
                 return render_template('home.html',s=session,error='incorrect username or password')
-        if (request.form['button']=="signup"):
+        if (button=="signup"):
             if module.newUser(username,password):
                 return render_template('signup')
             else:
                 return render_template('home.html',s=session,error='Invalid username or password')
+        if (button=="submitEssay"):
+            essay = request.form['essay']
+            if (module.addEssay('My Essay',username,500,'This is a test essay',essay)
+                return "Essay successfully submited"
+        else:
+            return render_template('home.html',s=session,error='Error with submitting essay')
 
 #When a user clicks a button to logout, direct them here, log them out and redirect them
 @app.route('/logout')
