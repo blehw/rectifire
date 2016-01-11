@@ -50,8 +50,11 @@
       {% endif %}
       {% if s.logged %}
       <div>
+	Submit your essay!
 	<form method ="POST">
-	  Submit your essay: <input type="text" name="essay">
+	  Essay title: <input type="text" name="title">
+	  Subject area of essay: <input type="text" name="description">
+	  Essay content: <input type="text" name="essay">
   	  <input type="submit" name="button" value="Submit">
 	</form>
 	<h4 class="font-thin">{{error}}<span class="font-semibold"></span></h4>

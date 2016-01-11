@@ -28,9 +28,12 @@ def home():
             else:
                 return render_template('home.html',s=session,error='Invalid username or password')
         if (button=="Submit"):
+            title = request.form['title']
+            description = request.form['description']
             essay = request.form['essay']
-            if (module.addEssay('My Essay',s.logged,500,'This is a test essay',essay)):
-                return "Essay successfully submited! Here is your essay: "+essay
+            wordCount = ""+ module.wordCounter(essay)
+            if (module.addEssay(title,session['logged'],module.wordCounter(essay),description,essay)):
+                return "Essay successfully submited! Here is your essay: <br>"+title+"<br>"+essay+"<br>Word count: "+ wordCount
             else:
                 return render_template('home.html',s=session,error='Error with submitting essay')
 

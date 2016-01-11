@@ -32,6 +32,13 @@ def authenticate(username, password):
 #    )
 
 #def essays_edited(num_essays):
+
+def wordCounter(essay):
+    count = 0
+    words = essay.split()
+    for num in words:
+        count += 1
+    return count
  
 def addEssay(title,author,length,essay_description,essay_content):
     newEntry = {'title':title,'author':author,'length':length,'essay_description':essay_description,'essay_content':essay_content}
