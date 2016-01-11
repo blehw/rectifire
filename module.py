@@ -34,11 +34,13 @@ def authenticate(username, password):
 #def essays_edited(num_essays):
  
 def addEssay(title,author,length,essay_description,essay_content):
-    if (database.essays.find({'title':title,'author':author}).count()>0):
+    newEntry = {'title':title,'author':author,'length':length,'essay_description':essay_description,'essay_content':essay_content}
+    check = database.essays.find({'title':title}).count()
+    if check != 0:
         return False
-    new_essay = {'title':title,'author':author,'length':length,'essay_description':essay_description,'essay_content':essay_content}
-    database.essays.insert(newEntry)
-    return True
+    else:        
+        database.essays.insert(newEntry)
+        return True
 
 def getEssay(title,author):
     if (database.essays.find({'title':title,'author':author}).count()==1):

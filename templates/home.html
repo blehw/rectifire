@@ -42,17 +42,17 @@
 	<form action="/" method ="POST">
 	  Username: <input type="text" name="username">
   	  Password: <input type="text" name="password">
-  	  <input type="submit" name="button" value="login">
-	  <input type="submit" name="button" value="signup">
+  	  <input type="submit" name="button" value="Login">
+	  <input type="submit" name="button" value="Signup">
 	</form>
 	<h4 class="font-thin">{{error}}<span class="font-semibold"></span></h4>
       </div>
       {% endif %}
       {% if s.logged %}
       <div>
-	<form action="/" method ="POST">
-	  Submit your essay:: <input type="text" name="essay">
-  	  <input type="submit" name="button" value="submitEssay">
+	<form method ="POST">
+	  Submit your essay: <input type="text" name="essay">
+  	  <input type="submit" name="button" value="Submit">
 	</form>
 	<h4 class="font-thin">{{error}}<span class="font-semibold"></span></h4>
       </div>
