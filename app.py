@@ -31,7 +31,7 @@ def home():
             title = request.form['title']
             description = request.form['description']
             essay = request.form['essay']
-            wordCount = ""+ module.wordCounter(essay)
+            wordCount = str(module.wordCounter(essay))
             if (module.addEssay(title,session['logged'],module.wordCounter(essay),description,essay)):
                 return "Essay successfully submited! Here is your essay: <br>"+title+"<br>"+essay+"<br>Word count: "+ wordCount
             else:
