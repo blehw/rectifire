@@ -8,7 +8,8 @@ def home():
     if 'logged' not in session:
         session['logged']=False
     if request.method=="GET":
-        return render_template("home.html",s=session)
+        firewood = module.getFirewood(session['logged'])
+        return render_template("home.html",s=session,firewood=firewood)
     if request.method=="POST":
         button = request.form['button']
         if (button=="Login"):
@@ -24,7 +25,7 @@ def home():
             username = request.form['username']
             password = request.form['password']
             if module.newUser(username,password):
-                return render_template('signup')
+                return render_template('home.html',s=session)
             else:
                 return render_template('home.html',s=session,error='Invalid username or password')
         if (button=="Submit"):

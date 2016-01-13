@@ -55,9 +55,14 @@ def getEssay(title,author):
     else:
         return "No essay found"
 
+def getAllEssays(username):
+    return database.essays.find({'author':username})
+
 def getFirewood(username):
     user = database.logins.find({'username':username})
-    return user.get('firewood')
+    newlist = list(user)
+    for r in newlist:
+        return r.get('firewood')
 
 def addFirewood(username,num):
     prevFirewood = getFirewood(username)
