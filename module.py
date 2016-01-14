@@ -56,8 +56,13 @@ def getEssay(title,author):
         return "No essay found"
 
 def getAllEssays(username):
-    return database.essays.find({'author':username})
-
+    rawEssays = database.essays.find({'author':username})
+    newlist = list(rawEssays)
+    essays = []
+    for r in newlist:
+        essays.append('essay_content')
+    return essays
+    
 def getFirewood(username):
     user = database.logins.find({'username':username})
     newlist = list(user)

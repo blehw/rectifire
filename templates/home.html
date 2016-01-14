@@ -51,7 +51,7 @@
       {% if s.logged %}
       <div>
 	Hi, {{s.logged}}!
-	Your firewood: {{firewood}}
+	Your firewood: {{f}}
 	Submit your essay! <br>
 	<form method ="POST">
 	  Essay title: <input type="text" name="title"><br>
@@ -59,7 +59,8 @@
 	  Essay content: <input type="text" name="essay"><br>
   	  <input type="submit" name="button" value="Submit"><br>
 	</form>
-	Your previous essays:
+	Your previous essays: {{e}} <br>
+	<button onClick="location.href='/logout'">Logout</button>
 	<h4 class="font-thin">{{error}}<span class="font-semibold"></span></h4>
       </div>
       {% endif %}

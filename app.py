@@ -9,7 +9,8 @@ def home():
         session['logged']=False
     if request.method=="GET":
         firewood = module.getFirewood(session['logged'])
-        return render_template("home.html",s=session,firewood=firewood)
+        essays = module.getAllEssays(session['logged'])
+        return render_template("home.html",s=session,f=firewood,e=essays)
     if request.method=="POST":
         button = request.form['button']
         if (button=="Login"):
@@ -20,12 +21,12 @@ def home():
                 session['username'] = request.form['username']
                 return render_template("home.html",s=session)
             else:
-                return render_template('home.html',s=session,error='incorrect username or password')
+                return render_template('home.html',s=session,error='Incorrect username or password')
         if (button=="Signup"):
             username = request.form['username']
             password = request.form['password']
             if module.newUser(username,password):
-                return render_template('home.html',s=session)
+                return render_template('home.html',s=session,error='You have successfully created an account!')
             else:
                 return render_template('home.html',s=session,error='Invalid username or password')
         if (button=="Submit"):
@@ -37,6 +38,10 @@ def home():
                 return "Essay successfully submited! Here is your essay: <br>"+title+"<br>"+essay+"<br>Word count: "+ wordCount
             else:
                 return render_template('home.html',s=session,error='Error with submitting essay')
+        if (button=="Logout"):
+            session['logged'] = None
+            session['username'] = None
+            return render_template('home.html')
 
 #When a user clicks a button to logout, direct them here, log them out and redirect them
 @app.route('/logout')
