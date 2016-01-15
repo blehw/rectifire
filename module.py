@@ -23,16 +23,6 @@ def authenticate(username, password):
     else:
         return False
 
-#def set_firewood(username,num_fire):
-#    db.users.update(
-#        {'username':username},
-#        { $set:
-#          { 'fire': num_fire}
-#      }
-#    )
-
-#def essays_edited(num_essays):
-
 def wordCounter(essay):
     count = 0
     words = essay.split()
@@ -40,29 +30,6 @@ def wordCounter(essay):
         count += 1
     return count
  
-def addEssay(title,author,length,essay_description,essay_content):
-    newEntry = {'title':title,'author':author,'length':length,'essay_description':essay_description,'essay_content':essay_content}
-    check = database.essays.find({'title':title}).count()
-    if check != 0:
-        return False
-    else:        
-        database.essays.insert(newEntry)
-        return True
-
-def getEssay(title,author):
-    if (database.essays.find({'title':title,'author':author}).count()==1):
-        return database.users.find({'title':title,'author':author})
-    else:
-        return "No essay found"
-
-def getAllEssays(username):
-    rawEssays = database.essays.find({'author':username})
-    newlist = list(rawEssays)
-    essays = []
-    for r in newlist:
-        essays.append('essay_content')
-    return essays
-    
 def getFirewood(username):
     user = database.logins.find({'username':username})
     newlist = list(user)
@@ -84,3 +51,69 @@ def addEssaysEdited(username,num):
     newEssaysEdited = prevEssaysEdited + num
     database.logins.update({'username':username}, {'essaysEdited':newEssaysEdited})
     return True
+
+def addEssay(username,link):
+    newEntry = {'username':username,'link':link}
+    check = database.essays.find({'link':link}).count()
+    if check != 0:
+        return False
+    else:        
+        database.essays.insert(newEntry)
+        return True
+
+def getEssayLinks(username):
+    rawEssays = database.essays.find({'username':username})
+    newlist = list(rawEssays)
+    contents = []
+    for r in newlist:
+        contents.append(r.get('link'))
+    return contents
+
+'''
+def addEssay(title,author,length,essay_description,essay_content):
+    newEntry = {'title':title,'author':author,'length':length,'essay_description':essay_description,'essay_content':essay_content}
+    check = database.essays.find({'title':title}).count()
+    if check != 0:
+        return False
+    else:        
+        database.essays.insert(newEntry)
+        return True
+
+def getEssay(title,author):
+    if (database.essays.find({'title':title,'author':author}).count()==1):
+        return database.users.find({'title':title,'author':author})
+    else:
+        return "No essay found"
+
+def getEssayTitles(username):
+    rawEssays = database.essays.find({'author':username})
+    newlist = list(rawEssays)
+    contents = []
+    for r in newlist:
+        essays.append(r.get('essay_content'))
+    return contents
+
+def getEssayLengths(username):
+    rawEssays = database.essays.find({'author':username})
+    newlist = list(rawEssays)
+    contents = []
+    for r in newlist:
+        essays.append(r.get('essay_content'))
+    return contents
+
+def getEssayDescriptions(username):
+    rawEssays = database.essays.find({'author':username})
+    newlist = list(rawEssays)
+    contents = []
+    for r in newlist:
+        essays.append(r.get('essay_content'))
+    return contents
+    
+def getEssayContents(username):
+    rawEssays = database.essays.find({'author':username})
+    newlist = list(rawEssays)
+    contents = []
+    for r in newlist:
+        contents.append(r.get('essay_content'))
+    return contents
+'''

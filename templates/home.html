@@ -54,13 +54,18 @@
 	Your firewood: {{f}}
 	Submit your essay! <br>
 	<form method ="POST">
-	  Essay title: <input type="text" name="title"><br>
+	  Google Drive Link: <input type="text" name="link"><br>
+	  <!--Essay title: <input type="text" name="title"><br>
 	  Subject area of essay: <input type="text" name="description"><br>
-	  Essay content: <input type="text" name="essay"><br>
+	  Essay content: <input type="text" name="essay"><br>-->
   	  <input type="submit" name="button" value="Submit"><br>
 	</form>
-	Your previous essays: {{e}} <br>
-	<button onClick="location.href='/logout'">Logout</button>
+	<!--Your previous essays:
+	{% for item in e %}
+	<br>{{item}}
+	{% endfor %}-->
+	<br><button onClick="location.href='/youressays'">Your essays</button>
+	<br><button onClick="location.href='/logout'">Logout</button>
 	<h4 class="font-thin">{{error}}<span class="font-semibold"></span></h4>
       </div>
       {% endif %}
