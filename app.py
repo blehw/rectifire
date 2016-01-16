@@ -8,8 +8,11 @@ def home():
     if 'logged' not in session:
         session['logged']=False
     if request.method=="GET":
-        firewood = module.getFirewood(session['logged'])
-        #essays = module.getEssayContents(session['logged'])
+        if (session['logged']):
+            firewood = module.getFirewood(session['username'])
+            #essays = module.getEssayContents(session['logged'])
+        else:
+            firewood=0
         return render_template("home.html",s=session,f=firewood)
     if request.method=="POST":
         button = request.form['button']
@@ -17,8 +20,8 @@ def home():
             username = request.form['username']
             password = request.form['password']
             if (module.authenticate(username,password)):
-                session['logged']=username
-                session['username'] = request.form['username']
+                session['logged']=True
+                session['username'] = username
                 firewood = module.getFirewood(session['logged'])
                 return render_template("home.html",s=session,f=firewood)
             else:
@@ -27,6 +30,8 @@ def home():
             username = request.form['username']
             password = request.form['password']
             if module.newUser(username,password):
+                session['logged']=True
+                session['username'] = username
                 return render_template('home.html',s=session,error='You have successfully created an account!')
             else:
                 return render_template('home.html',s=session,error='Invalid username or password')
@@ -40,12 +45,12 @@ def home():
             
             if (module.addEssay(title,session['logged'],module.wordCounter(essay),description,essay)):
             '''
-            if (module.addEssay(session['logged'],link)):
+            if (module.addEssay(session['username'],link)):
                 return render_template('home.html',s=session,error='Essay successfully submitted!')
             else:
                 return render_template('home.html',s=session,error='Error with submitting essay')
         if (button=="Logout"):
-            session['logged'] = None
+            session['logged'] = False
             session['username'] = None
             return render_template('home.html')
 
@@ -57,7 +62,7 @@ def logout():
 
 @app.route('/youressays')
 def youressays():
-    essays = module.getEssayLinks(session['logged'])
+    essays = module.getEssayLinks(session['username'])
     return render_template('youressays.html',e=essays)
 
 @app.route('/edit')
