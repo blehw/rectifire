@@ -4,7 +4,7 @@ connection = MongoClient()
 database = connection['database']
 
 def newUser(username,password):
-    d = {'username': username, 'password': password, 'firewood': 0, 'essaysEdited': 0}
+    d = {'username': username, 'password': password, 'firewood': 20, 'essaysEdited': 0}
     check = database.logins.find({'username': username}).count()
     if check != 0:
         return False
@@ -36,10 +36,8 @@ def getFirewood(username):
     for r in newlist:
         return r.get('firewood')
 
-def addFirewood(username,num):
-    prevFirewood = getFirewood(username)
-    newFirewood = prevFirewood + num
-    database.logins.update({'username':username}, {'firewood':newFirewood})
+def setFirewood(username,num):
+    database.logins.update({'username':username}, {'firewood':num})
     return True
 
 def getEssaysEdited(username):

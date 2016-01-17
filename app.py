@@ -46,7 +46,14 @@ def home():
             if (module.addEssay(title,session['logged'],module.wordCounter(essay),description,essay)):
             '''
             if (module.addEssay(session['username'],link)):
-                return render_template('home.html',s=session,error='Essay successfully submitted!')
+                username = session['username']
+                firewood = module.getFirewood(username)
+                newFirewood = firewood - 10
+                if (firewood >10):
+                    if (module.setFirewood(username,newFirewood)):
+                        return render_template('home.html',s=session,error='Essay successfully submitted!')
+                else:
+                    return render_template('home.html',s=session,error='Not enough firewood!')
             else:
                 return render_template('home.html',s=session,error='Error with submitting essay')
         if (button=="Logout"):
