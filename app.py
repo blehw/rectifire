@@ -49,9 +49,10 @@ def home():
                 username = session['username']
                 firewood = module.getFirewood(username)
                 newFirewood = firewood - 10
-                if (firewood >10):
+                if (firewood > 10):
                     if (module.setFirewood(username,newFirewood)):
-                        return render_template('home.html',s=session,error='Essay successfully submitted!')
+                        module.setToEdit(username,module.getRandomEssay())
+                        return render_template('home.html',s=session,error=module.getRandomEssay())
                 else:
                     return render_template('home.html',s=session,error='Not enough firewood!')
             else:

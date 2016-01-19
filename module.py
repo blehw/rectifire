@@ -4,7 +4,7 @@ connection = MongoClient()
 database = connection['database']
 
 def newUser(username,password):
-    d = {'username': username, 'password': password, 'firewood': 20, 'essaysEdited': 0}
+    d = {'username': username, 'password': password, 'firewood': 20, 'essaysEdited': 0,'toEdit':''}
     check = database.logins.find({'username': username}).count()
     if check != 0:
         return False
@@ -37,7 +37,13 @@ def getFirewood(username):
         return r.get('firewood')
 
 def setFirewood(username,num):
-    database.logins.update({'username':username}, {'firewood':num})
+    cursor = database.logins.find({'username':username})
+    newlist = list(cursor)
+    for r in newlist:
+        password = r.get('password')
+        essaysEdited = r.get('essaysEdited')
+        toEdit = r.get('toEdit')
+        database.logins.update({'username':username}, {'username':username,'password':password,'firewood':num,'essaysEdited':essaysEdited,'toEdit':toEdit})
     return True
 
 def getEssaysEdited(username):
@@ -51,13 +57,13 @@ def addEssaysEdited(username,num):
     return True
 
 def addEssay(username,link):
-    newEntry = {'username':username,'link':link}
-    check = database.essays.find({'link':link}).count()
-    if check != 0:
-        return False
-    else:        
-        database.essays.insert(newEntry)
-        return True
+    newEntry = {'username':username,'link':link,'timesEdited':0}
+    #check = database.essays.find({'link':link}).count()
+    #if check != 0:
+    #    return False
+    #else:        
+    database.essays.insert(newEntry)
+    return True
 
 def getEssayLinks(username):
     rawEssays = database.essays.find({'username':username})
@@ -66,6 +72,42 @@ def getEssayLinks(username):
     for r in newlist:
         contents.append(r.get('link'))
     return contents
+
+def getAllEssayLinks():
+    rawEssays = database.essays.find()
+    newlist = list(rawEssays)
+    contents = []
+    for r in newlist:
+        contents.append(r.get('link'))
+    return contents
+
+def getAllEssayEdits():
+    rawEssays = database.essays.find()
+    newlist = list(rawEssays)
+    contents = []
+    for r in newlist:
+        contents.append(r.get('timesEdited'))
+    return contents
+
+def getRandomEssay():
+    essays = getAllEssayLinks()
+    nums = getAllEssayEdits()
+    champ = nums[0]
+    for n in nums:
+        if n > champ:
+            champ = n
+    return essays[n]
+
+def setToEdit(username,link):
+    cursor = database.logins.find({'username':username})
+    newlist = list(cursor)
+    for r in newlist:
+        password = r.get('password')
+        firewood = r.get('firewood')
+        essaysEdited = r.get('essaysEdited')
+        database.logins.update({'username':username}, {'username':username,'password':password,'firewood':firewood,'essaysEdited':essaysEdited,'toEdit':link})
+    
+    
 
 '''
 def addEssay(title,author,length,essay_description,essay_content):
