@@ -50,13 +50,22 @@
       {% endif %}
       {% if s.logged %}
       <div>
-	Submit your essay!
+	Hi, {{s.username}}! <br>
+	Your firewood: {{f}} <br>
+	Submit your essay! <br>
 	<form method ="POST">
-	  Essay title: <input type="text" name="title">
-	  Subject area of essay: <input type="text" name="description">
-	  Essay content: <input type="text" name="essay">
-  	  <input type="submit" name="button" value="Submit">
+	  Google Drive Link: <input type="text" name="link"><br>
+	  <!--Essay title: <input type="text" name="title"><br>
+	  Subject area of essay: <input type="text" name="description"><br>
+	  Essay content: <input type="text" name="essay"><br>-->
+  	  <input type="submit" name="button" value="Submit"><br>
 	</form>
+	<!--Your previous essays:
+	{% for item in e %}
+	<br>{{item}}
+	{% endfor %}-->
+	<br><button onClick="location.href='/youressays'">Your essays</button>
+	<br><button onClick="location.href='/logout'">Logout</button>
 	<h4 class="font-thin">{{error}}<span class="font-semibold"></span></h4>
       </div>
       {% endif %}
@@ -67,9 +76,9 @@
       </div><!-- /col-12 -->
     </div><!-- /row -->
     <div id="home-row-2" class="row clearfix">
-      <div class="col-12 col-sm-4"><div class="home-hover navigation-slide" data-slide="4"><img src="images/s02.png"></div><span>Earn Tinder</span></div>
+      <div class="col-12 col-sm-4"><div class="home-hover navigation-slide" data-slide="4"><img src="{{url_for('static', filename='images/s02.png')}}"></div><span>Earn Tinder</span></div>
       <div class="col-12 col-sm-4"></div>
-      <div class="col-12 col-sm-4"><div class="home-hover navigation-slide" data-slide="5"><img src="images/s03.png"></div><span>Your Essays</span></div>
+      <div class="col-12 col-sm-4"><div class="home-hover navigation-slide" data-slide="5"><img src="{{url_for('static', filename='images/s03.png')}}"></div><span>Your Essays</span></div>
     </div><!-- /row -->
   </div><!-- /container -->
 </div><!-- /slide1 -->

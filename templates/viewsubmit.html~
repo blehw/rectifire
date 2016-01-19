@@ -1,29 +1,5 @@
-<!doctype html>
-<html>
-
-<head lang="en">
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-	
-	<title>Erectifire</title> 
-	<meta name="description" content="BlackTie.co - Free Handsome Bootstrap Themes" />	    
-	<meta name="keywords" content="themes, bootstrap, free, templates, bootstrap 3, freebie,">
-	<meta property="og:title" content="">
-
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="fancybox/jquery.fancybox-v=2.1.5.css" type="text/css" media="screen">
-    <link rel="stylesheet" href="css/font-awesome.min.css" rel="stylesheet">
-	
-	<link rel="stylesheet" type="text/css" href="css/style.css">	
-	
-	<link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,600,300,200&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-	
-	
-	<link rel="prefetch" href="images/zoom.png">
-		
-</head>
-
-<body>
+{% extends "base.html" %}
+{% block body %}
 	<div class="navbar navbar-fixed-top" data-activeslide="1">
 		<div class="container">
 		
@@ -88,7 +64,7 @@
 	<div class="slide story" id="slide-4" data-slide="4">
 		<div class="container">
 			<div class="row title-row">
-				<div class="col-12 font-thin"> Your<span class="font-semibold">Essays</span></div>
+				<div class="col-12 font-thin">Submit and View <span class="font-semibold">Your Essays</span></div>
 			</div><!-- /row -->
 			<div class="row line-row">
 				<div class="hr">&nbsp;</div>
@@ -177,3 +153,4 @@ submit your new essay link here!
 	</script>
 
 </html>
+{% endblock %}
