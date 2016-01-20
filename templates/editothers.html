@@ -9,8 +9,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			
-			
+				
 			<div class="nav-collapse collapse navbar-responsive-collapse">
 				<ul class="nav row">
 					<li data-slide="1" class="col-12 col-sm-2"><a id="menu-link-1" href="#slide-1" title="Next Section"><span class="icon icon-home"></span> <span class="text">Home</span></a></li>
@@ -37,14 +36,6 @@
 	<div class="slide story" id="slide-1" data-slide="1">
 		<div class="container">
 			<div id="home-row-1" class="row clearfix">
-				<div>
-					<form>
-					Username: <input type="text" name="name">
-  					Password: <input type="text" name="pass">
-  					<input type="submit" value="Login">
-					<input type="submit" value="Register">
-					</form>
-				</div>
 				<div class="col-12">
 					<h1 class="font-semibold">ERECTI <span class="font-thin">FIRE</span></h1>
 					<h4 class="font-thin"> {% if s.logged %} Logged in as {{s.username}}{% else %}Please Log In{% endif %}<span class="font-semibold"></span></h4>
@@ -52,9 +43,13 @@
 				</div><!-- /col-12 -->
 			</div><!-- /row -->
 			<div id="home-row-2" class="row clearfix">
-				<div class="col-12 col-sm-4"><div class="home-hover navigation-slide" data-slide="4"><img src="{{url_for('static', filename='images/s02.png')}}"></div><span>Earn Tinder</span></div>
-      <div class="col-12 col-sm-4"></div>
-      <div class="col-12 col-sm-4"><div class="home-hover navigation-slide" data-slide="5"><img src="{{url_for('static', filename='images/s03.png')}}"></div><span>About</span></div>
+				<div class="col-12 col-sm-4"><div class="home-hover navigation-slide" data-slide="4">
+				    <a href="/youressays">
+				      <img src="{{url_for('static', filename='images/s02.png')}}"></a></div><span>Your Essays</span></div>
+				<div class="col-12 col-sm-4"></div>
+				<div class="col-12 col-sm-4"><div class="home-hover navigation-slide" data-slide="5">
+				    <a href="/">
+				    <img src="{{url_for('static', filename='images/s03.png')}}"></a></div><span>Home</span></div>
 			</div><!-- /row -->
 		</div><!-- /container -->
 	</div><!-- /slide1 -->
