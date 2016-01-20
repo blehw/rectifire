@@ -106,8 +106,27 @@ def setToEdit(username,link):
         firewood = r.get('firewood')
         essaysEdited = r.get('essaysEdited')
         database.logins.update({'username':username}, {'username':username,'password':password,'firewood':firewood,'essaysEdited':essaysEdited,'toEdit':link})
-    
-    
+
+def getToEdit(username):
+    toEdit = database.logins.find({'username':username})
+    newlist = list(toEdit)
+    for r in newlist:
+        return r.get('toEdit')
+
+def getTimesEdited(link):
+    link = database.logins.find({'username':username})
+    newlist = list(link)
+    for r in newlist:
+        return r.get('timesEdited')
+
+def setTimesEdited(link,num):
+    cursor = database.essays.find({'link':link})
+    newlist = list(cursor)
+    for r in newlist:
+        username = r.get('username')
+        link = r.get('link')
+        database.essays.update({'link':link}, {'username':username,'link':link,'timesEdited':num})
+    return True
 
 '''
 def addEssay(title,author,length,essay_description,essay_content):

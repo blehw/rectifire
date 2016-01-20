@@ -47,7 +47,8 @@
 				</div>
 				<div class="col-12">
 					<h1 class="font-semibold">ERECTI <span class="font-thin">FIRE</span></h1>
-					<h4 class="font-thin"> {% if s.logged %} Logged in as {{s.username}}{% else %}Please Log In{% endif %}<span class="font-semibold"></span></h4>
+				
+					
 					<br>
 				</div><!-- /col-12 -->
 			</div><!-- /row -->
@@ -73,15 +74,10 @@
 				<div class="col-sm-1 hidden-sm">&nbsp;</div>
 				<div class="col-12 col-sm-10 font-light">
 Edit other peoples essays and submit them for Tinder here!<br><br>
-<form>
-<iframe width="850" height="1200" src="https://docs.google.com/document/d/1wTzq934fdkFW5KuZAb85lenzolapL221RqMrSe-m3Ag/edit?usp=sharing"></iframe>
-<br>
- 		<input type="submit" value="Submit">	
-<br><br><br><br>
-<iframe width="850" height="1200" src="https://docs.google.com/document/d/1wTzq934fdkFW5KuZAb85lenzolapL221RqMrSe-m3Ag/edit?usp=sharing"></iframe>
-<br>
-</textarea><br>
-		<input type="submit" value="Submit">
+<form action="/" method ="POST">
+  <iframe width="850" height="1200" src={{e}}></iframe>
+  <br>
+<input type="submit" name="button" value="Submit">
 </form>
 
 </div>

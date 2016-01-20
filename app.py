@@ -52,7 +52,7 @@ def home():
                 if (firewood > 10):
                     if (module.setFirewood(username,newFirewood)):
                         module.setToEdit(username,module.getRandomEssay())
-                        return render_template('home.html',s=session,error=module.getRandomEssay())
+                        return render_template('home.html',s=session,error='Essay successfully submitted!')
                 else:
                     return render_template('home.html',s=session,error='Not enough firewood!')
             else:
@@ -75,7 +75,21 @@ def youressays():
 
 @app.route('/edit')
 def edit():
-    return render_template('editothers.html')
+    if request.method=="GET":
+        if (session['logged']):
+            essay = module.getToEdit(session['username'])
+        else:
+            essay = 'NO ESSAY'
+        return render_template('editothers.html',e=essay)
+    if request.method=="POST":
+        button = request.form['button']
+        if (button=="Submit"):
+            essay = module.getToEdit(session['username'])
+            edited = module.getTimesEdited(essay) + 1
+            if (setTimesEdited(essay,edited)):
+                return render_template('home.html',s=session,error='Thank you for editing the essay!')
+            else:
+                return render_template('home.html',s=session,error='Something went wrong while trying to submit the essay edits :(')
 
 if __name__=="__main__":
     app.debug = True
