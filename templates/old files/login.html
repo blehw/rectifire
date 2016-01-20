@@ -5,7 +5,7 @@
 </head>
 
 <body>
-  <p> {% if s.logged %} You are logged in already!  </p>
+  <p> {% if s.logged %} You are logged in already!, {{s.logged}}  </p>
   <form action="/logout">
     <input type="submit" value="Logout">
   </form>
