@@ -91,7 +91,8 @@ def edit():
             else:
                 return render_template('home.html',s=session,error='Something went wrong while trying to submit the essay edits :(')
 
+app.secret_key="Don't tell anyone!"
+
 if __name__=="__main__":
     app.debug = True
-    app.secret_key="Don't tell anyone!"
     app.run('0.0.0.0', port=8000)
