@@ -1,0 +1,18 @@
+Run with:
+  gunicorn -D -p pidfile -b 0.0.0.0:8000 app:app
+  
+The pidfile will contain the pid of the gunicorn process running in the background
+
+nginx file: /etc/nginx/sites-enabled/rectire & /etc/nginx/sites-available/rectifire
+  server {
+        listen 80;
+        server_name 162.243.17.181;
+
+        location / {
+                include proxy_params;
+                proxy_pass http://unix:/home/henry/rectifire/rectifire.sock;
+        }
+}
+
+
+  
