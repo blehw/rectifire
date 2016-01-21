@@ -50,16 +50,14 @@
       {% endif %}
       {% if s.logged %}
       <div>
-	Hi, {{s.username}}! <br>
-	Your firewood: {{f}} <br>
-	Submit your essay! <br>
+	<h4 class="font-thin">{{error}}<span class="font-semibold"></span></h4>
+      </div>
+Your firewood: {{f}} <br><br>
 	<form method ="POST">
-	  Google Drive Link: <input type="text" name="link"><br>
-	  <!--Essay title: <input type="text" name="title"><br>
-	  Subject area of essay: <input type="text" name="description"><br>
-	  Essay content: <input type="text" name="essay"><br>-->
+	  Submit your essay via Google Drive Link: <input type="text" name="link">
   	  <input type="submit" name="button" value="Submit"><br>
 	</form>
+<<<<<<< HEAD
 	<!--Your previous essays:
 	{% for item in e %}
 	<br>{{item}}
@@ -69,6 +67,8 @@
 	<br><button onClick="location.href='/logout'">Logout</button>
 	<h4 class="font-thin">{{error}}<span class="font-semibold"></span></h4>
       </div>
+=======
+>>>>>>> 2d2133824a4a20b446278153731a86e0f1e0dc4f
       {% endif %}
       <div class="col-12">
 	<h1 class="font-semibold">RECTI <span class="font-thin">FIRE</span></h1>
@@ -82,7 +82,9 @@
 	  <a href="/edit">
 	    <img src="{{url_for('static', filename='images/s02.png')}}"></a>
 	</div><span>Earn Tinder</span></div>
-      <div class="col-12 col-sm-4"></div>
+<div class="col-12 col-sm-4"><div class="home-hover navigation-slide" data-slide="3">
+<a href="logout">
+<img src="{{url_for('static', filename='images/s03.png')}}"></a></div><span>Logout</span></div>
       <div class="col-12 col-sm-4"><div class="home-hover navigation-slide" data-slide="5">
 	  <a href="youressays">
 	    <img src="{{url_for('static', filename='images/s03.png')}}" href="/youressays"></a>
