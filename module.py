@@ -73,30 +73,33 @@ def getEssayLinks(username):
         contents.append(r.get('link'))
     return contents
 
-def getAllEssayLinks():
-    rawEssays = database.essays.find()
+def getAllEssayLinks(username):
+    rawEssays = database.essays.find( { 'username': { '$ne': username } })
     newlist = list(rawEssays)
     contents = []
     for r in newlist:
         contents.append(r.get('link'))
     return contents
 
-def getAllEssayEdits():
-    rawEssays = database.essays.find()
+def getAllEssayEdits(username):
+    rawEssays = database.essays.find( { 'username': { '$ne': username } })
     newlist = list(rawEssays)
     contents = []
     for r in newlist:
         contents.append(r.get('timesEdited'))
     return contents
 
-def getRandomEssay():
-    essays = getAllEssayLinks()
-    nums = getAllEssayEdits()
+def getRandomEssay(username):
+    essays = getAllEssayLinks(username)
+    nums = getAllEssayEdits(username)
     champ = nums[0]
-    for n in nums:
-        if n > champ:
-            champ = n
-    return essays[n]
+    if nums == []:
+        return 'No essay to edit'
+    else:
+        for n in nums:
+            if n > champ:
+                champ = n
+        return essays[n]
 
 def setToEdit(username,link):
     cursor = database.logins.find({'username':username})
