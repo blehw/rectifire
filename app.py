@@ -84,9 +84,10 @@ def edit():
     if request.method=="POST":
         button = request.form['button']
         if (button=="Submit"):
-            essay = module.getToEdit(session['username'])
+            username = session['username']
+            essay = module.getToEdit(username)
             edited = module.getTimesEdited(essay) + 1
-            if (setTimesEdited(essay,edited)):
+            if (module.setTimesEdited(essay,edited)):
                 return render_template('home.html',s=session,error='Thank you for editing the essay!')
             else:
                 return render_template('home.html',s=session,error='Something went wrong while trying to submit the essay edits :(')

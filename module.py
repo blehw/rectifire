@@ -117,8 +117,8 @@ def getToEdit(username):
         return r.get('toEdit')
 
 def getTimesEdited(link):
-    link = database.logins.find({'username':username})
-    newlist = list(link)
+    raw = database.essays.find({'link':link})
+    newlist = list(raw)
     for r in newlist:
         return r.get('timesEdited')
 
