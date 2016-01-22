@@ -41,7 +41,7 @@
       <div>
 	<form action="/" method ="POST">
 	  Username: <input type="text" name="username">
-  	  Password: <input type="text" name="password">
+  	  Password: <input type="password" name="password">
   	  <input type="submit" name="button" value="Login">
 	  <input type="submit" name="button" value="Signup">
 	</form>
@@ -64,7 +64,6 @@
       <br><button onClick="location.href='/youressays'">Your essays</button>
       <br><button onClick="location.href='/edit'">Your essay to edit</button>
       <br><button onClick="location.href='/logout'">Logout</button>
-      <h4 class="font-thin">{{error}}<span class="font-semibold"></span></h4>
     </div>
     {% endif %}
     <div class="col-12">
