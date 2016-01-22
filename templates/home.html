@@ -52,94 +52,43 @@
       <div>
 	<h4 class="font-thin">{{error}}<span class="font-semibold"></span></h4>
       </div>
-Your firewood: {{f}} <br><br>
-	<form method ="POST">
-	  Submit your essay via Google Drive Link: <input type="text" name="link">
-  	  <input type="submit" name="button" value="Submit"><br>
-	</form>
-<<<<<<< HEAD
-	<!--Your previous essays:
-	{% for item in e %}
-	<br>{{item}}
-	{% endfor %}-->
-	<br><button onClick="location.href='/youressays'">Your essays</button>
-	<br><button onClick="location.href='/edit'">Your essay to edit</button>
-	<br><button onClick="location.href='/logout'">Logout</button>
-	<h4 class="font-thin">{{error}}<span class="font-semibold"></span></h4>
-      </div>
-=======
->>>>>>> 2d2133824a4a20b446278153731a86e0f1e0dc4f
-      {% endif %}
-      <div class="col-12">
-	<h1 class="font-semibold">RECTI <span class="font-thin">FIRE</span></h1>
-	<h4 class="font-thin">{% if s.logged %} Logged in as {{s.username}}{% else %}Please Log In{% endif %}<span class="font-semibold"></span></h4>
-	<br>
-      </div><!-- /col-12 -->
-    </div><!-- /row -->
-    {% if s.logged %}
-    <div id="home-row-2" class="row clearfix">
-      <div class="col-12 col-sm-4"><div class="home-hover navigation-slide" data-slide="4">
-	  <a href="/edit">
-	    <img src="{{url_for('static', filename='images/s02.png')}}"></a>
-	</div><span>Earn Tinder</span></div>
-<div class="col-12 col-sm-4"><div class="home-hover navigation-slide" data-slide="3">
-<a href="logout">
-<img src="{{url_for('static', filename='images/s03.png')}}"></a></div><span>Logout</span></div>
-      <div class="col-12 col-sm-4"><div class="home-hover navigation-slide" data-slide="5">
-	  <a href="youressays">
-	    <img src="{{url_for('static', filename='images/s03.png')}}" href="/youressays"></a>
-	</div><span>Your Essays</span></div>
-    </div><!-- /row -->
+      Your firewood: {{f}} <br><br>
+      <form action="/" method ="POST">
+	Submit your essay via Google Drive Link: <input type="text" name="link">
+  	<input type="submit" name="button" value="Submit"><br>
+      </form>
+      <!--Your previous essays:
+	  {% for item in e %}
+	  <br>{{item}}
+	  {% endfor %}-->
+      <br><button onClick="location.href='/youressays'">Your essays</button>
+      <br><button onClick="location.href='/edit'">Your essay to edit</button>
+      <br><button onClick="location.href='/logout'">Logout</button>
+      <h4 class="font-thin">{{error}}<span class="font-semibold"></span></h4>
+    </div>
     {% endif %}
-  </div><!-- /container -->
+    <div class="col-12">
+      <h1 class="font-semibold">RECTI <span class="font-thin">FIRE</span></h1>
+      <h4 class="font-thin">{% if s.logged %} Logged in as {{s.username}}{% else %}Please Log In{% endif %}<span class="font-semibold"></span></h4>
+      <br>
+    </div><!-- /col-12 -->
+  </div><!-- /row -->
+  {% if s.logged %}
+  <div id="home-row-2" class="row clearfix">
+    <div class="col-12 col-sm-4"><div class="home-hover navigation-slide" data-slide="4">
+	<a href="/edit">
+	  <img src="{{url_for('static', filename='images/s02.png')}}"></a>
+      </div><span>Earn Tinder</span></div>
+    <div class="col-12 col-sm-4"><div class="home-hover navigation-slide" data-slide="3">
+	<a href="logout">
+	  <img src="{{url_for('static', filename='images/s03.png')}}"></a></div><span>Logout</span></div>
+    <div class="col-12 col-sm-4"><div class="home-hover navigation-slide" data-slide="5">
+	<a href="youressays">
+	  <img src="{{url_for('static', filename='images/s03.png')}}" href="/youressays"></a>
+      </div><span>Your Essays</span></div>
+  </div><!-- /row -->
+  {% endif %}
+</div><!-- /container -->
 </div><!-- /slide1 -->
-
-
-<!-- === Slide 4 - Process === -->
-<div class="slide story" id="slide-4" data-slide="4">
-  <div class="container">
-    <div class="row title-row">
-      <div class="col-12 font-thin">See us <span class="font-semibold">at work</span></div>
-    </div><!-- /row -->
-    <div class="row line-row">
-      <div class="hr">&nbsp;</div>
-    </div><!-- /row -->
-    <div class="row subtitle-row">
-      <div class="col-sm-1 hidden-sm">&nbsp;</div>
-      <div class="col-12 col-sm-10 font-light">Our Site was created by 3 Naive Highschool boys as a Software Development Final Project.</div>
-      <div class="col-sm-1 hidden-sm">&nbsp;</div>
-    </div><!-- /row -->
-    <div class="row content-row">
-      <div class="col-sm-1 hidden-sm">&nbsp;</div>
-      <div class="col-12 col-sm-2">
-	<p><i class="icon icon-bolt"></i></p>
-	<h2 class="font-thin">Listening to<br><span class="font-semibold" >your needs</span></h2>
-	<h4 class="font-thin">We created this website knowing that seniors around the country need to edit college essays.</h4>
-      </div><!-- /col12 -->
-      <div class="col-12 col-sm-2">
-	<p><i class="icon icon-cog"></i></p>
-	<h2 class="font-thin">Maintenance<br><span class="font-semibold">discovery</span></h2>
-	<h4 class="font-thin">If you find any bugs in our website, contact us and we will begin repairing them.</h4>
-      </div><!-- /col12 -->
-      <div class="col-12 col-sm-2">
-	<p><i class="icon icon-cloud"></i></p>
-	<h2 class="font-thin">Storming<br><span class="font-semibold">our brains</span></h2>
-	<h4 class="font-thin">This application is 100% in the cloud. that means if your hard drive malfunctions, there is no worry.</h4>
-      </div><!-- /col12 -->
-      <div class="col-12 col-sm-2">
-	<p><i class="icon icon-map-marker"></i></p>
-	<h2 class="font-thin">Getting<br><span class="font-semibold">there</span></h2>
-	<h4 class="font-thin">There is currently a small pool of users, but eventually, we will grow to cater more users. Please be patient.</h4>
-      </div><!-- /col12 -->
-      <div class="col-12 col-sm-2">
-	<p><i class="icon icon-gift"></i></p>
-	<h2 class="font-thin">Delivering<br><span class="font-semibold">the product</span></h2>
-	<h4 class="font-thin">Well, that is about all. Please try to enjoy all of the components of our application!</h4>
-      </div><!-- /col12 -->
-      <div class="col-sm-1 hidden-sm">&nbsp;</div>
-    </div><!-- /row -->
-  </div><!-- /container -->
-  
-</div><!-- /Slide 6 -->
 
 {% endblock %}
