@@ -73,7 +73,7 @@ def youressays():
     essays = module.getEssayLinks(session['username'])
     return render_template('youressays.html',e=essays)
 
-@app.route('/edit')
+@app.route('/edit',methods=['GET','POST'])
 def edit():
     if request.method=="GET":
         if (session['logged']):
