@@ -63,12 +63,12 @@ def home():
             return render_template('home.html')
 
 #When a user clicks a button to logout, direct them here, log them out and redirect them
-@app.route('/logout')
+@app.route('/logout',methods=['GET','POST'])
 def logout():
     session['logged'] = False
     return redirect('/')
 
-@app.route('/youressays')
+@app.route('/youressays',methods=['GET','POST'])
 def youressays():
     essays = module.getEssayLinks(session['username'])
     return render_template('youressays.html',e=essays)
