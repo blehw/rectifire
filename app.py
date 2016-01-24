@@ -16,7 +16,7 @@ def home():
             for item in essays:
                 if (module.getNewEdits(item) >= 1):
                     e += 'Your essay has been edited!'
-            if (module.getWarnings(username) >= 0):
+            if (module.getWarnings(username) >= 1):
                 e += 'Your edit was deemed poor by another user. This is a warning; if you receive another poor rating, you will be temporarily unable to submit essays to be edited.'
             return render_template("home.html",s=session,f=firewood,error=e)
         else:
@@ -36,7 +36,7 @@ def home():
                 for item in essays:
                     if (module.getNewEdits(item) >= 1):
                         e += 'Your essay has been edited!'
-                if (module.getWarnings(username) >= 0):
+                if (module.getWarnings(username) >= 1):
                     e += 'Your edit was deemed poor by another user. This is a warning; if you receive another poor rating, you will be temporarily unable to submit essays to be edited.'
                 return render_template("home.html",s=session,f=firewood,error=e)
             else:
@@ -53,7 +53,7 @@ def home():
                 return render_template('home.html',s=session,error='Invalid username or password')
         if (button=="Submit"):
             warnings = module.getWarnings(session['username'])
-            firewood = module.getFirewood(session['firewood'])
+            firewood = module.getFirewood(session['username'])
             if (warnings >= 2):
                 return render_template('home.html',s=session,f=firewood,error='You have received 2 warnings, and are unable to submit any essays! Please browse and submit some quality edits to remove your warnings.')
             else:
@@ -161,6 +161,9 @@ def browse():
     if request.method=="GET":
         username = session['username']
         essays = module.getAllEssayLinks(username)
+        for item in essay:
+            if (module.getNewEdits(item) >= 1):
+                essays.remove(item)
         return render_template('browse.html',e=essays,browsing=True)
     if request.method=="POST":
         button = request.form['button']

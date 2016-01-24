@@ -145,10 +145,14 @@ def getRandomEssay(username):
         return ''
     else:
         champ = nums[0]
+        champindex = 0
+        index = 0
         for n in nums:
-            if n > champ:
+            if n < champ:
                 champ = n
-        return essays[n]
+                champindex = index
+            index += 1
+        return essays[champindex]
 
 def getToEdit(username):
     toEdit = database.logins.find({'username':username})
