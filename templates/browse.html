@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% block body %}
+<div class="navbar navbar-fixed-top" data-activeslide="1">
+  <div class="container">
+    
+    <!-- .navbar-toggle is used as the toggle for collapsed navbar content -->
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    
+    
+    <div class="nav-collapse collapse navbar-responsive-collapse">
+      <ul class="nav row">
+	<li data-slide="1" class="col-12 col-sm-2"><a id="menu-link-1" href="#slide-1" title="Next Section"><span class="icon icon-home"></span> <span class="text">Home</span></a></li>
+	<li data-slide="4" class="col-12 col-sm-2"><a id="menu-link-4" href="#slide-4" title="Next Section"><span class="icon icon-gears"></span> <span class="text">View Your essays</span></a></li>
+      </ul>
+      <div class="row">
+	<div class="col-sm-2 active-menu"></div>
+      </div>
+    </div><!-- /.nav-collapse -->
+  </div><!-- /.container -->
+</div><!-- /.navbar -->
+
+
+<!-- === Arrows === -->
+<div id="arrows">
+  <div id="arrow-up" class="disabled"></div>
+  <div id="arrow-down"></div>
+  <div id="arrow-left" class="disabled visible-lg"></div>
+  <div id="arrow-right" class="disabled visible-lg"></div>
+</div><!-- /.arrows -->
+
+
+<!-- === MAIN Background === -->
+<div class="slide story" id="slide-1" data-slide="1">
+  <div class="container">
+    <div id="home-row-1" class="row clearfix">
+      <div class="col-12">
+	<h1 class="font-semibold">ERECTI <span class="font-thin">FIRE</span></h1>
+	
+	<br>
+      </div><!-- /col-12 -->
+    </div><!-- /row -->
+    <div id="home-row-2" class="row clearfix">
+      <div class="col-12 col-sm-4"><div class="home-hover navigation-slide" data-slide="4">
+	  <a href="/edit">
+	    <img src="{{url_for('static', filename='images/s02.png')}}"></a></div><span>Earn Tinder</span></div>
+      <div class="col-12 col-sm-4"></div>
+      <div class="col-12 col-sm-4"><div class="home-hover navigation-slide" data-slide="5">
+	  <a href="/">
+	    <img src="{{url_for('static', filename='images/s03.png')}}"></a></div><span>Home</span></div>
+    </div><!-- /row -->
+  </div><!-- /container -->
+</div><!-- /slide1 -->
+
+<div class="slide story" id="slide-4" data-slide="4">
+  <div class="container">
+    <div class="row title-row">
+      <div class="col-12 font-thin">Edit <span class="font-semibold">your essays</span></div>
+    </div><!-- /row -->
+    <div class="row line-row">
+      <div class="hr">&nbsp;</div>
+    </div><!-- /row -->
+    <div class="row subtitle-row">
+      <div class="col-sm-1 hidden-sm">&nbsp;</div>
+      <div class="col-12 col-sm-10 font-light">
+	{% if browsing %}
+	Browse edits to earn Tinder!<br><br>
+	{% for item in e %}
+	<form action="/browse" method ="POST">
+	  <button name="button" value={{item}} type="submit">Edit this essay</button>
+	</form>
+	<iframe width="850" height="300" src={{item}}></iframe>
+	{% endfor %}
+	{% endif %}
+	{% if browsing == False %}
+	Edit this essay to earn Tinder!<br><br>
+	<iframe width="850" height="1200" src={{e}}></iframe>
+	<br>
+	<form action= "/edit" method ="POST">
+	   <input type="submit" name="button" value="Submit">
+	</form>
+	{% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
