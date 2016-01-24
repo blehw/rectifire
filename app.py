@@ -135,8 +135,22 @@ def browse():
         return render_template('browse.html',e=essays,browsing=True)
     if request.method=="POST":
         button = request.form['button']
-        return render_template('browse.html',e=button,browsing=False)
-
+        if (button == "Submit"):
+            username = session['username']
+            essay = module.getToEdit(username)
+            edited = module.getTimesEdited(essay) + 1
+            if (module.setTimesEdited(essay,edited)):
+                firewood = module.getFirewood(username)
+                newFirewood = firewood + 5
+                module.setFirewood(username,newFirewood)
+                oldEdits = module.getNewEdits(essay)
+                module.setNewEdits(essay,oldEdits+1)
+                module.setToEdit(session['username'],'')
+                return render_template('home.html',s=session,error='Thank you for editing the essay! You have earned 5 firewood!')
+        else:
+            username = session['username']
+            module.setToEdit(username,button)
+            return render_template('browse.html',e=button,browsing=False)
 
 if __name__=="__main__":
     app.debug = True
