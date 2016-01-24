@@ -66,23 +66,12 @@
     <div class="row subtitle-row">
       <div class="col-sm-1 hidden-sm">&nbsp;</div>
       <div class="col-12 col-sm-10 font-light">
-	{% if browsing %}
-	Browse edits to earn Tinder!<br><br>
-	{% for item in e %}
-	<form action="/browse" method ="POST">
-	  <button name="button" value={{item}} type="submit">Edit this essay</button>
-	</form>
-	<iframe width="850" height="300" src={{item}}></iframe>
-	{% endfor %}
-	{% endif %}
-	{% if browsing == False %}
 	Edit this essay to earn Tinder!<br><br>
 	<iframe width="850" height="1200" src={{e}}></iframe>
 	<br>
 	<form action= "/" method ="POST">
-	   <input type="submit" name="button" value="Submit">
+	   <button name="button" value={{e}} type="submit">Submit</button>
 	</form>
-	{% endif %}
       </div>
     </div>
   </div>
