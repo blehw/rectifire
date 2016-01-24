@@ -4,7 +4,7 @@ connection = MongoClient()
 database = connection['database']
 
 def newUser(username,password):
-    d = {'username': username, 'password': password, 'firewood': 20, 'essaysEdited': 0,'toEdit':''}
+    d = {'username': username, 'password': password, 'firewood': 20, 'essaysEdited': 0,'toEdit':'','warnings':0}
     check = database.logins.find({'username': username}).count()
     if check != 0:
         return False
@@ -43,7 +43,8 @@ def setFirewood(username,num):
         password = r.get('password')
         essaysEdited = r.get('essaysEdited')
         toEdit = r.get('toEdit')
-        database.logins.update({'username':username}, {'username':username,'password':password,'firewood':num,'essaysEdited':essaysEdited,'toEdit':toEdit})
+        warnings = r.get('warnings')
+        database.logins.update({'username':username}, {'username':username,'password':password,'firewood':num,'essaysEdited':essaysEdited,'toEdit':toEdit,'warnings':warnings})
     return True
 
 def getEssaysEdited(username):
@@ -54,6 +55,23 @@ def addEssaysEdited(username,num):
     prevEssaysEdited = getEssaysEdited(username)
     newEssaysEdited = prevEssaysEdited + num
     database.logins.update({'username':username}, {'essaysEdited':newEssaysEdited})
+    return True
+
+def getWarnings(username):
+    user = database.logins.find({'username':username})
+    newlist = list(user)
+    for r in newlist:
+        return r.get('warnings')
+
+def setWarnings(username,num):
+    cursor = database.logins.find({'username':username})
+    newlist = list(cursor)
+    for r in newlist:
+        password = r.get('password')
+        firewood = r.get('firewood')
+        essaysEdited = r.get('essaysEdited')
+        toEdit = r.get('toEdit')
+        database.logins.update({'username':username}, {'username':username,'password':password,'firewood':firewood,'essaysEdited':essaysEdited,'toEdit':toEdit,'warnings':num})
     return True
 
 def addEssay(username,link):
@@ -145,7 +163,8 @@ def setToEdit(username,link):
         password = r.get('password')
         firewood = r.get('firewood')
         essaysEdited = r.get('essaysEdited')
-        database.logins.update({'username':username}, {'username':username,'password':password,'firewood':firewood,'essaysEdited':essaysEdited,'toEdit':link})
+        warnings = r.get('warnings')
+        database.logins.update({'username':username}, {'username':username,'password':password,'firewood':firewood,'essaysEdited':essaysEdited,'toEdit':link,'warnings':warnings})
 
 def getEditor(link):
     editor = database.logins.find({'toEdit':link})

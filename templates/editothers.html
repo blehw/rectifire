@@ -70,11 +70,16 @@
 	{% if box %}
 	<iframe width="850" height="1200" src={{e}}></iframe>
 	<br>
+	{% if edited == False %}
 	<form action= "/edit" method ="POST">
 	<h4 class="font-thin">
 	  <input type="submit" name="button" value="Submit">
 	</h4>
 	</form>
+	{% endif %}
+	{% if edited %}
+	You have already edited this essay
+	{% endif %}
 	{% endif %}
 	{% if box == False %}
 	  No essays to edit

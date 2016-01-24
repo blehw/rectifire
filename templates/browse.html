@@ -58,7 +58,7 @@
 <div class="slide story" id="slide-4" data-slide="4">
   <div class="container">
     <div class="row title-row">
-      <div class="col-12 font-thin">Edit <span class="font-semibold">your essays</span></div>
+      <div class="col-12 font-thin">Browse and <span class="font-semibold">edit</span></div>
     </div><!-- /row -->
     <div class="row line-row">
       <div class="hr">&nbsp;</div>
@@ -67,7 +67,7 @@
       <div class="col-sm-1 hidden-sm">&nbsp;</div>
       <div class="col-12 col-sm-10 font-light">
 	{% if browsing %}
-	Browse edits to earn Tinder!<br><br>
+	Browse essays and edit them to earn Tinder!<br><br>
 	{% for item in e %}
 	<form action="/browse" method ="POST">
 	  <button name="button" value={{item}} type="submit">Edit this essay</button>

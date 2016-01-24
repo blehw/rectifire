@@ -67,9 +67,10 @@
     <div class="row subtitle-row">
       <div class="col-sm-1 hidden-sm">&nbsp;</div>
       <div class="col-12 col-sm-10 font-light">
-	Edit your own essays<br><br>
 	<h4 class="font-thin">{{m}}<span class="font-semibold"></span></h4>
 	{% if allEssays %}
+	View your own essays<br><br>
+	{{message}}
 	{% for item in e %}
 	<form action="/youressays" method ="POST">
 	  <h4 class="font-thin"><button name="button" value={{item}} type="submit">View this essay full size</button>
@@ -79,20 +80,20 @@
 	{% endfor %}
 	{% endif %}
 	{% if allEssays == False %}
+	Rate this edit<br><br>
 	<a href = "/youressays">
 	  <h4 class="font-thin"><button name="button" 		type="submit">Go back to list of other essays</button>
 	</h4></a>
 	<iframe width="850" height="1200" src={{essay}}></iframe>
 	{% if r %}
 	<form action="/youressays" method ="POST">
-	  How helpful was this edit?
+	  How helpful was this edit? If you select 0, the user will be given a warning.
 	  <select name = "button">
 	    <option value="0">0</option>
-	    <option value="1">1</option>
-	    <option value="2">2</option>
-	    <option value="3">3</option>
-	    <option value="4">4</option>
 	    <option value="5">5</option>
+	    <option value="10">10</option>
+	    <option value="15">15</option>
+	    <option value="20">20</option>
 	  </select>
 	  <br>
 	  <button name="submit" value={{essay}} type="submit">Submit</button>
