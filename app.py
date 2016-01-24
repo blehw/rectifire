@@ -104,7 +104,10 @@ def edit():
             essay = module.getToEdit(session['username'])
         else:
             essay = ''
-        return render_template('editothers.html',e=essay)
+        if (essay == ''):
+            return render_template('editothers.html',box=False)
+        else:
+            return render_template('editothers.html',e=essay,box=True)
     if request.method=="POST":
         button = request.form['button']
         if (button=="Submit"):
@@ -117,7 +120,6 @@ def edit():
                 module.setFirewood(username,newFirewood)
                 oldEdits = module.getNewEdits(essay)
                 module.setNewEdits(essay,oldEdits+1)
-                module.setToEdit(session['username'],'')
                 module.addEditor(username,essay)
                 return render_template('home.html',s=session,error='Thank you for editing the essay! You have earned 5 firewood!')
             else:
