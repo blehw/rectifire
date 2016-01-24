@@ -14,7 +14,7 @@
     <div class="nav-collapse collapse navbar-responsive-collapse">
       <ul class="nav row">
 	<li data-slide="1" class="col-12 col-sm-2"><a id="menu-link-1" href="#slide-1" title="Next Section"><span class="icon icon-home"></span> <span class="text">Home</span></a></li>
-	<li data-slide="4" class="col-12 col-sm-2"><a id="menu-link-4" href="#slide-4" title="Next Section"><span class="icon icon-gears"></span> <span class="text">View Your essays</span></a></li>
+	<li data-slide="4" class="col-12 col-sm-2"><a id="menu-link-4" href="#slide-4" title="Next Section"><span class="icon icon-eye-open"></span> <span class="text">Your Essays</span></a></li>
       </ul>
       <div class="row">
 	<div class="col-sm-2 active-menu"></div>
@@ -67,13 +67,13 @@
     <div class="row subtitle-row">
       <div class="col-sm-1 hidden-sm">&nbsp;</div>
       <div class="col-12 col-sm-10 font-light">
-	Edit other peoples essays and submit them for Tinder here!<br><br>
+	Edit your own essays<br><br>
 	<h4 class="font-thin">{{m}}<span class="font-semibold"></span></h4>
 	{% if allEssays %}
 	{% for item in e %}
 	<form action="/youressays" method ="POST">
-	  <button name="button" value={{item}} type="submit">View this essay</button>
-	</form>
+	  <h4 class="font-thin"><button name="button" value={{item}} type="submit">View this essay full size</button>
+	</h4></form>
 	<iframe width="850" height="300" src={{item}}></iframe>
 	<br>
 	{% endfor %}
