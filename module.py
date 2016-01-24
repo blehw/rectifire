@@ -57,7 +57,7 @@ def addEssaysEdited(username,num):
     return True
 
 def addEssay(username,link):
-    newEntry = {'username':username,'link':link,'timesEdited':0}
+    newEntry = {'username':username,'link':link,'timesEdited':0,'newEdits':0}
     #check = database.essays.find({'link':link}).count()
     #if check != 0:
     #    return False
@@ -92,10 +92,10 @@ def getAllEssayEdits(username):
 def getRandomEssay(username):
     essays = getAllEssayLinks(username)
     nums = getAllEssayEdits(username)
-    champ = nums[0]
     if nums == []:
         return 'No essay to edit'
     else:
+        champ = nums[0]
         for n in nums:
             if n > champ:
                 champ = n
@@ -128,7 +128,24 @@ def setTimesEdited(link,num):
     for r in newlist:
         username = r.get('username')
         link = r.get('link')
-        database.essays.update({'link':link}, {'username':username,'link':link,'timesEdited':num})
+        newEdits = r.get('newEdits')
+        database.essays.update({'link':link}, {'username':username,'link':link,'timesEdited':num,'newEdits':newEdits})
+    return True
+
+def getNewEdits(link):
+    raw = database.essays.find({'link':link})
+    newlist = list(raw)
+    for r in newlist:
+        return r.get('newEdits')
+
+def setNewEdits(link,num):
+    cursor = database.essays.find({'link':link})
+    newlist = list(cursor)
+    for r in newlist:
+        username = r.get('username')
+        link = r.get('link')
+        timesEdited = r.get('timesEdited')
+        database.essays.update({'link':link}, {'username':username,'link':link,'timesEdited':timesEdited,'newEdits':num})
     return True
 
 '''

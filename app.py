@@ -9,11 +9,17 @@ def home():
         session['logged']=False
     if request.method=="GET":
         if (session['logged']):
-            firewood = module.getFirewood(session['username'])
-            #essays = module.getEssayContents(session['logged'])
+            username = session['username']
+            firewood = module.getFirewood(username)
+            essays = module.getEssayLinks(username)
+            e = ''
+            for item in essays:
+                if (module.getNewEdits(item) >= 1):
+                    e = 'Your essay has been edited!'
+            return render_template("home.html",s=session,f=firewood,error=e)
         else:
             firewood=0
-        return render_template("home.html",s=session,f=firewood)
+            return render_template("home.html",s=session,f=firewood)
     if request.method=="POST":
         button = request.form['button']
         if (button=="Login"):
@@ -49,7 +55,7 @@ def home():
                 username = session['username']
                 firewood = module.getFirewood(username)
                 newFirewood = firewood - 10
-                if (firewood > 10):
+                if (firewood >= 10):
                     if (module.setFirewood(username,newFirewood)):
                         module.setToEdit(username,module.getRandomEssay(username))
                         return render_template('home.html',s=session,error='Essay successfully submitted!')
@@ -71,7 +77,11 @@ def logout():
 @app.route('/youressays',methods=['GET','POST'])
 def youressays():
     essays = module.getEssayLinks(session['username'])
-    return render_template('youressays.html',e=essays)
+    message = ''
+    for item in essays:
+        if (module.getNewEdits(item) >= 1):
+            message = 'Your essay has been edited!'
+    return render_template('youressays.html',e=essays,m=message)
 
 @app.route('/edit',methods=['GET','POST'])
 def edit():
@@ -88,7 +98,12 @@ def edit():
             essay = module.getToEdit(username)
             edited = module.getTimesEdited(essay) + 1
             if (module.setTimesEdited(essay,edited)):
-                return render_template('home.html',s=session,error='Thank you for editing the essay!')
+                firewood = module.getFirewood(username)
+                newFirewood = firewood + 5
+                module.setFirewood(username,newFirewood)
+                oldEdits = module.getNewEdits(essay)
+                module.setNewEdits(essay,oldEdits+1)
+                return render_template('home.html',s=session,error='Thank you for editing the essay! You have earned 5 firewood!')
             else:
                 return render_template('home.html',s=session,error='Something went wrong while trying to submit the essay edits :(')
 
