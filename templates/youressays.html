@@ -79,6 +79,9 @@
 	{% endfor %}
 	{% endif %}
 	{% if allEssays == False %}
+	<a href = "/youressays">
+	  <h4 class="font-thin"><button name="button" 		type="submit">Go back to list of other essays</button>
+	</h4></a>
 	<iframe width="850" height="1200" src={{essay}}></iframe>
 	{% if r %}
 	<form action="/youressays" method ="POST">
