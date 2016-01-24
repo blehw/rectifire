@@ -67,11 +67,16 @@
       <div class="col-sm-1 hidden-sm">&nbsp;</div>
       <div class="col-12 col-sm-10 font-light">
 	Edit other peoples essays and submit them for Tinder here!<br><br>
+	{% if box %}
 	<iframe width="850" height="1200" src={{e}}></iframe>
 	<br>
 	<form action= "/edit" method ="POST">
 	  <input type="submit" name="button" value="Submit">
 	</form>
+	{% endif %}
+	{% if box == False %}
+	  No essays to edit
+	{% endif %}
       </div>
     </div>
   </div>

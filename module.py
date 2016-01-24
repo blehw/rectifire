@@ -110,6 +110,12 @@ def setToEdit(username,link):
         essaysEdited = r.get('essaysEdited')
         database.logins.update({'username':username}, {'username':username,'password':password,'firewood':firewood,'essaysEdited':essaysEdited,'toEdit':link})
 
+def getEditor(link):
+    editor = database.logins.find({'toEdit':link})
+    newlist = list(editor)
+    for r in newlist:
+        return r.get('username')
+
 def getToEdit(username):
     toEdit = database.logins.find({'username':username})
     newlist = list(toEdit)

@@ -69,22 +69,32 @@
       <div class="col-12 col-sm-10 font-light">
 	Edit other peoples essays and submit them for Tinder here!<br><br>
 	<h4 class="font-thin">{{m}}<span class="font-semibold"></span></h4>
+	{% if allEssays %}
 	{% for item in e %}
-	<iframe width="850" height="1200" src={{item}}></iframe>
+	<form action="/youressays" method ="POST">
+	  <button name="button" value={{item}} type="submit">View this essay</button>
+	</form>
+	<iframe width="850" height="300" src={{item}}></iframe>
 	<br>
 	{% endfor %}
-	{% if m != '' %}
-	<form action="/" method ="POST">
+	{% endif %}
+	{% if allEssays == False %}
+	<iframe width="850" height="1200" src={{essay}}></iframe>
+	{% if r %}
+	<form action="/youressays" method ="POST">
 	  How helpful was this edit?
-	  <select>
+	  <select name = "button">
+	    <option value="0">0</option>
 	    <option value="1">1</option>
 	    <option value="2">2</option>
 	    <option value="3">3</option>
 	    <option value="4">4</option>
 	    <option value="5">5</option>
 	  </select>
-	  <input type="submit" name="button" value="Submit">
+	  <br>
+	  <button name="submit" value={{essay}} type="submit">Submit</button>
 	</form>
+	{% endif %}
 	{% endif %}
       </div>
     </div>

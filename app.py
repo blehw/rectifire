@@ -76,21 +76,38 @@ def logout():
 
 @app.route('/youressays',methods=['GET','POST'])
 def youressays():
-    essays = module.getEssayLinks(session['username'])
-    message = ''
-    for item in essays:
-        if (module.getNewEdits(item) >= 1):
-            message = 'Your essay has been edited!'
-    return render_template('youressays.html',e=essays,m=message)
-
+    if request.method=="GET":
+        essays = module.getEssayLinks(session['username'])
+        return render_template('youressays.html',e=essays,allEssays=True)
+    if request.method=="POST":
+        button = request.form['button']
+        if (button == '0' or button == '1' or button == '2' or button == '3' or button == '4' or button == '5'):
+            essay = request.form['submit']
+            editor = module.getEditor(essay)
+            oldFirewood = module.getFirewood(editor)
+            payment = int(button)
+            if (module.setFirewood(editor,oldFirewood+payment)):
+                module.setNewEdits(essay,0)
+                return render_template('home.html',s=session,error='Thank you for rating the edit!')
+            else:
+                return render_template('home.html',s=session,error='Something went wrong while rating the edit :(')
+        else:
+            rate = False
+            if (module.getNewEdits(button) == 1):
+                rate = True
+            return render_template('youressays.html',essay=button,allEssays=False,r=rate)
+         
 @app.route('/edit',methods=['GET','POST'])
 def edit():
     if request.method=="GET":
         if (session['logged']):
             essay = module.getToEdit(session['username'])
         else:
-            essay = 'NO ESSAY'
-        return render_template('editothers.html',e=essay)
+            essay = ''
+        if (essay == ''):
+            return render_template('editothers.html',box=False)
+        else:
+            return render_template('editothers.html',e=essay,box=True)
     if request.method=="POST":
         button = request.form['button']
         if (button=="Submit"):
@@ -103,11 +120,23 @@ def edit():
                 module.setFirewood(username,newFirewood)
                 oldEdits = module.getNewEdits(essay)
                 module.setNewEdits(essay,oldEdits+1)
+                module.setToEdit(session['username'],'')
                 return render_template('home.html',s=session,error='Thank you for editing the essay! You have earned 5 firewood!')
             else:
                 return render_template('home.html',s=session,error='Something went wrong while trying to submit the essay edits :(')
 
 app.secret_key="Don't tell anyone!"
+
+@app.route('/browse',methods=['GET','POST'])
+def browse():
+    if request.method=="GET":
+        username = session['username']
+        essays = module.getAllEssayLinks(username)
+        return render_template('browse.html',e=essays,browsing=True)
+    if request.method=="POST":
+        button = request.form['button']
+        return render_template('browse.html',e=button,browsing=False)
+
 
 if __name__=="__main__":
     app.debug = True
