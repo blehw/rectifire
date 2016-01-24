@@ -77,16 +77,22 @@ def getAllEssayLinks(username):
     rawEssays = database.essays.find( { 'username': { '$ne': username } })
     newlist = list(rawEssays)
     contents = []
+    editedAlready = getEditedBy(username)
     for r in newlist:
-        contents.append(r.get('link'))
+        for essay in editedAlready:
+            if (r != essay):
+                contents.append(r.get('link'))
     return contents
 
 def getAllEssayEdits(username):
     rawEssays = database.essays.find( { 'username': { '$ne': username } })
     newlist = list(rawEssays)
     contents = []
+    editedAlready = getEditedBy(username)
     for r in newlist:
-        contents.append(r.get('timesEdited'))
+        for essay in editedAlready:
+            if (r != essay):
+                contents.append(r.get('timesEdited'))
     return contents
 
 def getRandomEssay(username):
@@ -154,6 +160,19 @@ def setNewEdits(link,num):
         database.essays.update({'link':link}, {'username':username,'link':link,'timesEdited':timesEdited,'newEdits':num})
     return True
 
+def addEditor(username,essay):
+    newEntry = {'username':username,'essay':essay}
+    database.editors.insert(newEntry)
+    return True
+
+def getEditedBy(username):
+    raw = database.editors.find({'username':username})
+    newlist = list(raw)
+    contents = []
+    for r in newlist:
+        contents.append(r.get('essay'))
+    return contents
+    
 '''
 def addEssay(title,author,length,essay_description,essay_content):
     newEntry = {'title':title,'author':author,'length':length,'essay_description':essay_description,'essay_content':essay_content}

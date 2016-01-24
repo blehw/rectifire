@@ -104,10 +104,7 @@ def edit():
             essay = module.getToEdit(session['username'])
         else:
             essay = ''
-        if (essay == ''):
-            return render_template('editothers.html',box=False)
-        else:
-            return render_template('editothers.html',e=essay,box=True)
+        return render_template('editothers.html',e=essay)
     if request.method=="POST":
         button = request.form['button']
         if (button=="Submit"):
@@ -121,6 +118,7 @@ def edit():
                 oldEdits = module.getNewEdits(essay)
                 module.setNewEdits(essay,oldEdits+1)
                 module.setToEdit(session['username'],'')
+                module.addEditor(username,essay)
                 return render_template('home.html',s=session,error='Thank you for editing the essay! You have earned 5 firewood!')
             else:
                 return render_template('home.html',s=session,error='Something went wrong while trying to submit the essay edits :(')
@@ -146,6 +144,7 @@ def browse():
                 oldEdits = module.getNewEdits(essay)
                 module.setNewEdits(essay,oldEdits+1)
                 module.setToEdit(session['username'],'')
+                module.addEditor(username,essay)
                 return render_template('home.html',s=session,error='Thank you for editing the essay! You have earned 5 firewood!')
         else:
             username = session['username']
