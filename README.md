@@ -14,6 +14,9 @@ Fancy description: Users light fires using their kindling to attract other users
 
   
 Roles:
-  Database/Backend: Winton
-  Middleware/Server: Henry
-  Web Design/Frontend: Jacob
+
+  -Database/Backend: Winton
+  
+  -Middleware/Server: Henry
+  
+  -Web Design/Frontend: Jacob
