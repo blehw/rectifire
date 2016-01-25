@@ -161,7 +161,7 @@ def browse():
     if request.method=="GET":
         username = session['username']
         essays = module.getAllEssayLinks(username)
-        for item in essay:
+        for item in essays:
             if (module.getNewEdits(item) >= 1):
                 essays.remove(item)
         return render_template('browse.html',e=essays,browsing=True)
