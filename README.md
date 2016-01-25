@@ -20,7 +20,6 @@ https://www.youtube.com/watch?v=TTVkcgFtH_Y&feature=youtu.be
 
   
 ## Roles:
-
     -Database/Backend: Winton
     -Middleware/Server: Henry
     -Web Design/Frontend: Jacob
