@@ -17,9 +17,8 @@ User's submit essays to be edited through google docs. Through the website they 
 ### Fancy description: 
 * Users light fires using their kindling to attract other users in from the cold dark night. By throwing more wood on their fire, they can attract more scholars to edit their work. Warmed by their fire, their collegues can edit and comment on their work. In exchange the user pays his comrades in kindling so they may light their own fires. The better a job they do, the more wood they earn. HOWEVER, a user's supply of firewood is not infinite and he must venture out into the wilds to help other users on their projects in order to acquire more firewood. 
 
-
   
-##Roles:
+## Roles:
 
     -Database/Backend: Winton
     -Middleware/Server: Henry
