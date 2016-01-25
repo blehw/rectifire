@@ -3,9 +3,13 @@ A collaborative, crowd sourcing website to facilitate peer editing of essays, th
 
 URL: http://rectifire.xeditor.org
 
+
 FULL 9 MIN VIDEO:
+
 https://www.youtube.com/watch?v=9PrvS_EDYB4
+
 ABRIDGED 1 MIN VIDEO:
+
 https://www.youtube.com/watch?v=TTVkcgFtH_Y&feature=youtu.be
 
 User's submit essays to be edited through google docs. Through the website they and their peers can help one another and suggest edits in order to earn tinder, our site's currency. Tinder is spent to add essays. A google docs account is required to upload essays. Website hosted at Digital Ocean.
