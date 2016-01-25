@@ -12,8 +12,7 @@ https://www.youtube.com/watch?v=9PrvS_EDYB4
 https://www.youtube.com/watch?v=TTVkcgFtH_Y&feature=youtu.be
 
 ### Description:
-
-User's submit essays to be edited through google docs. Through the website they and their peers can help one another and suggest edits in order to earn tinder, our site's currency. Tinder is spent to add essays. A google docs account is required to upload essays. Make sure to upload the shareable, commentable essay link, not the personal essay link. Website hosted at Digital Ocean.
+* User's submit essays to be edited through google docs. Through the website they and their peers can help one another and suggest edits in order to earn tinder, our site's currency. Tinder is spent to add essays. A google docs account is required to upload essays. Make sure to upload the shareable, commentable essay link, not the personal essay link. Website hosted at Digital Ocean.
 
 
 ### Fancy description: 
