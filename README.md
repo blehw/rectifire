@@ -1,13 +1,13 @@
 # rectifire
 A collaborative, crowd sourcing website to facilitate peer editing of essays, theses, and any other project. 
 
-##URL: http://rectifire.xeditor.org
+###URL: http://rectifire.xeditor.org
 
-##FULL 9 MIN VIDEO:
+###FULL 9 MIN VIDEO:
 
 https://www.youtube.com/watch?v=9PrvS_EDYB4
 
-##ABRIDGED 1 MIN VIDEO:
+###ABRIDGED 1 MIN VIDEO:
 
 https://www.youtube.com/watch?v=TTVkcgFtH_Y&feature=youtu.be
 
