@@ -66,7 +66,17 @@
     <div class="row subtitle-row">
       <div class="col-sm-1 hidden-sm">&nbsp;</div>
       <div class="col-12 col-sm-10 font-light">
-	Edit other peoples essays and submit them for Tinder here!<br><br>
+	{% if edited %}
+	<div id="home-row-2" class="row clearfix">
+	<div class="col-12 col-sm-4"><div class="home-hover navigation-slide" data-slide="4">
+	</div></div>
+	<div class="col-12 col-sm-4"><div class="home-hover navigation-slide" data-slide="4">		
+		<a href="/browse">
+	  	<img src="{{url_for('static', filename='images/s02.png')}}"></a>
+      		</div><span>Browse other essays to edit for tinder</span></div></div><br><br><br>
+
+	You already edited this essay!<br>
+	{% endif %}
 	{% if box %}
 	<iframe width="850" height="1200" src={{e}}></iframe>
 	<br>
@@ -76,9 +86,6 @@
 	  <input type="submit" name="button" value="Submit">
 	</h4>
 	</form>
-	{% endif %}
-	{% if edited %}
-	You have already edited this essay
 	{% endif %}
 	{% endif %}
 	{% if box == False %}
